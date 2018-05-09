@@ -1,1 +1,4 @@
 include ':app'
+
+include ':gdpr'
+project(':gdpr').projectDir = new File(settingsDir, '../library/app')

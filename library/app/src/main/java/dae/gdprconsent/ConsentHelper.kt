@@ -13,6 +13,7 @@ object ConsentHelper {
     /**
      * Consent key -> isConsented cache
      */
+    @JvmStatic
     val consentCache: HashMap<String, Boolean> = HashMap()
 
     /**
@@ -30,6 +31,7 @@ object ConsentHelper {
      * from [showGdpr], [showGdprOnlyNew] and [showGdprIfRequest]), then you will need to
      * populate the consent cache with this method.
      */
+    @JvmStatic
     fun populate(context: Context) {
         val prefs = context.getSharedPreferences(Constants.PREF_GDPR, Context.MODE_PRIVATE)
         for(( key, _ ) in prefs.all) {
@@ -46,6 +48,7 @@ object ConsentHelper {
      * Checks are made with [consentCache]. This cache is populated after the [ConsentActivity] is
      * run. Even if it immediately closes. You can also immediately populate the cache with [populate].
      */
+    @JvmStatic
     fun hasConsent(key: String): Boolean {
         return consentCache[key] ?: false
     }
@@ -58,6 +61,7 @@ object ConsentHelper {
      * Call this if you have a GDPR button in your App. In settings for example. This will give the
      * user an opportunity to give or revoke their consent.
      */
+    @JvmStatic
     fun showGdpr(activity: Activity, requestCode: Int, consentItems: ArrayList<ConsentRequest>) {
         val intent = Intent(activity, ConsentActivity::class.java)
         intent.putParcelableArrayListExtra(Constants.CONSENT_REQUESTS, consentItems)
@@ -70,6 +74,7 @@ object ConsentHelper {
      *
      * This will show only if there is a consent item that is required that is not isConsented to.
      */
+    @JvmStatic
     fun showGdprIfRequest(activity: Activity, requestCode: Int, consentItems: ArrayList<ConsentRequest>) {
         val intent = Intent(activity, ConsentActivity::class.java)
         intent.putParcelableArrayListExtra(Constants.CONSENT_REQUESTS, consentItems)
@@ -86,6 +91,7 @@ object ConsentHelper {
      * start with your App should be specifically set disabled until this dialog is completed. At
      * which time you can use the user consent information to determine if a service should start.
      */
+    @JvmStatic
     fun showGdprOnlyNew(activity: Activity, requestCode: Int, consentItems: ArrayList<ConsentRequest>) {
         val intent = Intent(activity, ConsentActivity::class.java)
         intent.putParcelableArrayListExtra(Constants.CONSENT_REQUESTS, consentItems)

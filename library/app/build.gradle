@@ -10,10 +10,10 @@ apply plugin: 'maven-publish'
 android {
     compileSdkVersion 27
     defaultConfig {
-        minSdkVersion 15
+        minSdkVersion 14
         targetSdkVersion 27
-        versionCode 6
-        versionName "0.6"
+        versionCode 8
+        versionName "0.8"
         testInstrumentationRunner "android.support.test.runner.AndroidJUnitRunner"
     }
     buildTypes {
