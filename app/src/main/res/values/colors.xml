@@ -1,0 +1,9 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <color name="colorGdprPrimary">#FFFFFF</color>
+    <color name="colorGdprPrimaryDark">#FFFFFF</color>
+    <color name="colorGdprAccent">#D81B60</color>
+    <color name="green500">#4caf50</color>
+    <color name="green700">#388e3c</color>
+    <color name="green900">#1b5e20</color>
+</resources>
