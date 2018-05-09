@@ -70,7 +70,7 @@
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintTop_toBottomOf="@+id/category">
 
-            <LinearLayout
+            <android.support.constraint.ConstraintLayout
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:paddingBottom="72dp"
@@ -82,23 +82,42 @@
                     style="@style/TextAppearance.AppCompat.Caption"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:layout_marginLeft="16dp"
-                    android:layout_marginStart="16dp"
-                    android:text="@string/gdpr_caption_required"
+                    app:layout_constraintLeft_toLeftOf="@+id/consent"
+                    android:layout_marginLeft="8dp"
+                    android:layout_marginStart="8dp"
+                    android:text="@{request.isRequired ? @string/gdpr_caption_required : @string/gdpr_caption_not_required, default=@string/gdpr_caption_required}"
                     android:visibility="@{request.isRequired ? View.VISIBLE : View.GONE}" />
 
                 <Button
                     android:id="@+id/consent"
+                    app:layout_constraintTop_toBottomOf="@+id/required"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_marginLeft="8dp"
                     android:layout_marginStart="8dp"
                     android:backgroundTint="@{request.isConsented ? @color/green700 : @color/colorGdprAccent, default=@color/colorGdprAccent}"
-                    android:text="@{request.isConsented ? @string/gdpr_withdraw_consent : @string/gdpr_give_consent, default=`Give consent`}"
+                    android:text="@{request.isConsented ? @string/gdpr_withdraw_consent : @string/gdpr_give_consent, default=@string/gdpr_give_consent}"
                     android:textColor="@color/colorGdprPrimary" />
+
+                <TextView
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_marginLeft="8dp"
+                    style="@style/TextAppearance.AppCompat.Caption"
+                    app:layout_constraintTop_toTopOf="@+id/consent"
+                    app:layout_constraintBottom_toBottomOf="@+id/consent"
+                    app:layout_constraintLeft_toRightOf="@+id/consent"
+                    app:layout_constraintVertical_bias="0.5"
+                    app:layout_constraintRight_toRightOf="parent"
+                    android:layout_marginStart="8dp"
+                    android:layout_marginRight="8dp"
+                    android:layout_marginEnd="8dp"
+                    android:text="@string/gdpr_consent_not_yet_given"
+                    android:visibility="@{request.isConsented || request.isRequired ? View.GONE : View.VISIBLE}" />
 
                 <android.support.v7.widget.CardView
                     android:id="@+id/whyNeededCard"
+                    app:layout_constraintTop_toBottomOf="@+id/consent"
                     android:layout_width="match_parent"
                     app:cardBackgroundColor="@color/colorGdprPrimary"
                     android:layout_height="wrap_content"
@@ -122,13 +141,14 @@
                             style="@style/TextAppearance.AppCompat.Body1"
                             android:layout_width="match_parent"
                             android:layout_height="wrap_content"
-                            android:text="@{request.whyNeeded, default=`Why Needed`}"
+                            android:text="@{request.whyNeeded, default=`Why is this consent necessary`}"
                             android:textAppearance="?attr/textAppearanceListItem" />
                     </LinearLayout>
 
                 </android.support.v7.widget.CardView>
 
                 <android.support.v7.widget.CardView
+                    app:layout_constraintTop_toBottomOf="@+id/whyNeededCard"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:id="@+id/whatCard"
@@ -155,13 +175,14 @@
                             style="@style/TextAppearance.AppCompat.Body1"
                             android:layout_width="match_parent"
                             android:layout_height="wrap_content"
-                            android:text="@{request.what, default=`What`}" />
+                            android:text="@{request.what, default=`What does consenting entail`}" />
                     </LinearLayout>
 
                 </android.support.v7.widget.CardView>
 
                 <android.support.v7.widget.CardView
                     android:id="@+id/moreInformationCard"
+                    app:layout_constraintTop_toBottomOf="@+id/whatCard"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     app:cardBackgroundColor="@color/colorGdprPrimary"
@@ -186,7 +207,7 @@
                             style="@style/TextAppearance.AppCompat.Body1"
                             android:layout_width="match_parent"
                             android:layout_height="wrap_content"
-                            android:text="@{request.moreInformation, default=`More Information`}" />
+                            android:text="@{request.moreInformation, default=`http://www.example.com/gdpr`}" />
 
                         <Button
                             android:id="@+id/moreInformationButton"
@@ -202,15 +223,18 @@
 
                 <android.support.design.widget.FloatingActionButton
                     android:id="@+id/toTop"
+                    app:layout_constraintTop_toBottomOf="@+id/moreInformationCard"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:layout_gravity="center_horizontal"
+                    app:layout_constraintLeft_toLeftOf="@+id/moreInformationCard"
+                    app:layout_constraintRight_toRightOf="@+id/moreInformationCard"
+                    app:layout_constraintHorizontal_bias="0.5"
                     android:layout_marginTop="8dp"
                     android:layout_marginBottom="16dp"
                     android:visibility="invisible"
                     app:srcCompat="@drawable/ic_chevron_double_up_white_48dp" />
 
-            </LinearLayout>
+            </android.support.constraint.ConstraintLayout>
         </ScrollView>
 
 

@@ -20,6 +20,17 @@ class MainActivity : AppCompatActivity() {
         val list = ArrayList<ConsentRequest>()
 
         list.add(ConsentRequest(
+                key = "AGE_16",
+                isRequired = true,
+                added = "2018-05-09",
+                title = "How old are you?",
+                category = "Age",
+                moreInformation = "https://gdpr-info.eu/art-8-gdpr/",
+                what = "You must be at least 16 years of age to use this App.",
+                whyNeeded = "Due to European regulations, you must be at least 16 years of age to use this App."
+        ))
+
+        list.add(ConsentRequest(
                 key = "BASIC_APP",
                 isRequired = true,
                 added = "2018-05-09",

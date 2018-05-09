@@ -9,7 +9,7 @@ ext {
     // compile '<groupId>:<artifactId>:<libVersion>'
     groupId = 'dae.gdprconsent' // package name of the project
     artifactId = "gdpr-consent" // module name of the library
-    libVersion = "0.2"
+    libVersion = "0.6"
 }
 version = libVersion
 group = groupId

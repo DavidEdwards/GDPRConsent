@@ -41,7 +41,7 @@ dependencies {
     androidTestImplementation 'com.android.support.test.espresso:espresso-core:3.0.2'
 
     // The GDPR library
-    implementation 'dae.gdprconsent:app:0.2@aar'
+    implementation 'dae.gdprconsent:app:0.6@aar'
 
     // Required for the GDPR library
     implementation 'com.android.support:design:27.1.1'

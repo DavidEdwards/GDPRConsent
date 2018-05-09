@@ -3,6 +3,7 @@
     <string name="gdpr_give_consent">Give consent</string>
     <string name="gdpr_withdraw_consent">Withdraw consent</string>
     <string name="gdpr_caption_required">Required</string>
+    <string name="gdpr_caption_not_required">Not required</string>
     <string name="gdpr_visit_page">Visit page</string>
     <string name="gdpr_snack_required">We require this consent for the App to function…</string>
     <string name="gdpr_snack_new_consent">Here is a new consent requirement.</string>
@@ -11,4 +12,5 @@
     <string name="gdpr_header_what">What</string>
     <string name="gdpr_image_alt_is_consented">Is consented</string>
     <string name="gdpr_image_alt_is_not_consented">Is not consented</string>
+    <string name="gdpr_consent_not_yet_given">Consent is not yet given. There may be reduced functionality in the App.</string>
 </resources>
