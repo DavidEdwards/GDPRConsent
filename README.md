@@ -1,6 +1,14 @@
 # GDPR Consent
 
-https://streamable.com/b5odn
+https://streamable.com/b5odn 
+
+```
+maven {
+    url  "https://dl.bintray.com/davidedwards/dae"
+}
+
+implementation 'dae.gdprconsent:app:0.2@aar'
+```
 
 ## Goals
 
