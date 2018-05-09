@@ -2,45 +2,6 @@
 
 https://streamable.com/b5odn
 
-## Implement in your project
-
-```
-maven {
-    url  "https://dl.bintray.com/davidedwards/dae"
-}
-
-implementation 'dae.gdprconsent:app:0.2@aar'
-```
-
-These dependencies must be registered in your own app level gradle.build.
-
-```
-implementation 'com.android.support:design:27.1.1'
-implementation "com.android.support:cardview-v7:27.1.1"
-implementation 'com.android.support.constraint:constraint-layout:1.1.0'
-implementation "android.arch.lifecycle:extensions:1.1.1"
-```
-
-These must also be added to your android block in the app level gradle.build.
-
-```
-compileOptions {
-    sourceCompatibility = '1.8'
-    targetCompatibility = '1.8'
-}
-dataBinding {
-    enabled = true
-}
-```
-
-Ensure that you are also using the latest gradle plugin.
-
-```
-classpath 'com.android.tools.build:gradle:3.2.0-alpha14'
-```
-
-There is an example App in this repository that you can test with.
-
 ## Goals
 
 * Providing a granular consent system. Each individual system should be disable-able.
