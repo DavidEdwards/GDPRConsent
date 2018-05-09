@@ -1,7 +1,5 @@
 # GDPR Consent
 
-https://streamable.com/b5odn
-
 ## Implement in your project
 
 ```
