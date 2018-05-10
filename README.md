@@ -42,7 +42,7 @@ There is an example App in this repository that you can test with.
 ## Goals
 
 * Providing a granular consent system. Each individual system should be disable-able.
-* Consent items must be able to be marked as required, in the case where your App couldn't function. For exampple, navigation software that needs your location.
+* Consent items must be able to be marked as required, in the case where your App couldn't function. For example, navigation software that needs your location.
 * Making it easy to see what a specific consent entails, what is stored, why it is stored.
 * Details of consent are immutable. Once it has been saved once, it remains. The developer cannot change the language of consent without creating a new consent, that in turn must be consented to.
 * New consent can be added at any time after release of the App. New items will be presented to the user the next time that they run the App after updating.
