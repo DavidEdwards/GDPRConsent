@@ -9,12 +9,14 @@ import android.util.Log;
 
 import java.util.ArrayList;
 
+import dae.gdprconsent.Constants;
 import dae.gdprconsent.ConsentHelper;
 import dae.gdprconsent.ConsentRequest;
 
 public class MainJavaActivity extends AppCompatActivity {
 
     private final static int RC_CONSENT = 1;
+    private final static int RC_RESTART = 2;
 
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
@@ -88,6 +90,18 @@ public class MainJavaActivity extends AppCompatActivity {
         if(requestCode == RC_CONSENT) {
             if(resultCode == Activity.RESULT_OK) {
                 // User passed through the consent system completely
+                
+                boolean consentChanged = data.getExtras() != null && data.getExtras().getBoolean(Constants.KEY_CONSENT_CHANGED);
+				if(consentChanged) {
+					Intent intent = new Intent(this, MainActivity.class);
+					PendingIntent pending = PendingIntent.getActivity(this, RC_RESTART, intent, PendingIntent.FLAG_CANCEL_CURRENT);
+					AlarmManager alarmManager = (AlarmManager) this.getSystemService(Context.ALARM_SERVICE);
+					if (alarmManager != null) {
+						alarmManager.set(AlarmManager.RTC, System.currentTimeMillis() + 100, pending);
+					}
+					finish();
+					System.exit(0);
+				}
 
                 Log.v("CONSENT", "Consent for basic App functions: "+ConsentHelper.hasConsent("BASIC_APP"));
                 Log.v("CONSENT", "Consent for statistics collection: "+ConsentHelper.hasConsent("FIREBASE_STATISTICS"));
