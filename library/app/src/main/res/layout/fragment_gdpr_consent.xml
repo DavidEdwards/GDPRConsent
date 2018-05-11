@@ -23,12 +23,12 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:background="@color/colorGdprPrimary"
+            android:contentDescription="@{request.consented ? @string/gdpr_image_alt_is_consented : @string/gdpr_image_alt_is_not_consented, default=@string/gdpr_image_alt_is_consented}"
             android:elevation="4dp"
             android:padding="8dp"
             android:src="@{request.consented ? @drawable/ic_check_circle_outline_black_36dp : @drawable/ic_checkbox_blank_circle_outline_black_36dp, default=@drawable/ic_checkbox_blank_circle_outline_black_36dp}"
             app:layout_constraintLeft_toLeftOf="parent"
-            app:layout_constraintTop_toTopOf="parent"
-            android:contentDescription="@{request.consented ? @string/gdpr_image_alt_is_consented : @string/gdpr_image_alt_is_not_consented, default=@string/gdpr_image_alt_is_consented}" />
+            app:layout_constraintTop_toTopOf="parent" />
 
         <TextView
             android:id="@+id/title"
@@ -39,6 +39,7 @@
             android:elevation="4dp"
             android:gravity="center_vertical"
             android:paddingStart="8dp"
+            android:paddingLeft="8dp"
             android:paddingEnd="8dp"
             android:paddingRight="8dp"
             android:text="@{request.title, default=`Title`}"
@@ -46,8 +47,7 @@
             app:layout_constraintLeft_toRightOf="@+id/status"
             app:layout_constraintRight_toRightOf="parent"
             app:layout_constraintTop_toTopOf="@+id/status"
-            app:layout_constraintVertical_bias="0.5"
-            android:paddingLeft="8dp" />
+            app:layout_constraintVertical_bias="0.5" />
 
         <TextView
             android:id="@+id/category"
@@ -62,66 +62,105 @@
             app:layout_constraintRight_toRightOf="parent"
             app:layout_constraintTop_toBottomOf="@+id/status" />
 
-
         <ScrollView
+            android:id="@+id/contentScroll"
             android:layout_width="match_parent"
             android:layout_height="0dp"
-            android:id="@+id/contentScroll"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintTop_toBottomOf="@+id/category">
 
             <android.support.constraint.ConstraintLayout
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:paddingBottom="72dp"
+                android:orientation="vertical"
                 android:paddingTop="8dp"
-                android:orientation="vertical">
+                android:paddingBottom="72dp">
 
-                <TextView
-                    android:id="@+id/required"
-                    style="@style/TextAppearance.AppCompat.Caption"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    app:layout_constraintLeft_toLeftOf="@+id/consent"
-                    android:layout_marginLeft="8dp"
-                    android:layout_marginStart="8dp"
-                    android:text="@{request.isRequired ? @string/gdpr_caption_required : @string/gdpr_caption_not_required, default=@string/gdpr_caption_required}"
-                    android:visibility="@{request.isRequired ? View.VISIBLE : View.GONE}" />
+                <!--<Button-->
+                <!--android:id="@+id/consent"-->
+                <!--app:layout_constraintTop_toBottomOf="@+id/required"-->
+                <!--android:layout_width="wrap_content"-->
+                <!--android:layout_height="wrap_content"-->
+                <!--android:layout_marginLeft="8dp"-->
+                <!--android:layout_marginStart="8dp"-->
+                <!--android:backgroundTint="@{request.isConsented ? @color/green700 : @color/colorGdprAccent, default=@color/colorGdprAccent}"-->
+                <!--android:text="@{request.isConsented ? @string/gdpr_withdraw_consent : @string/gdpr_give_consent, default=@string/gdpr_give_consent}"-->
+                <!--android:textColor="@color/colorGdprPrimary" />-->
 
-                <Button
-                    android:id="@+id/consent"
-                    app:layout_constraintTop_toBottomOf="@+id/required"
-                    android:layout_width="wrap_content"
+                <android.support.v7.widget.CardView
+                    android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:layout_marginLeft="8dp"
-                    android:layout_marginStart="8dp"
-                    android:backgroundTint="@{request.isConsented ? @color/green700 : @color/colorGdprAccent, default=@color/colorGdprAccent}"
-                    android:text="@{request.isConsented ? @string/gdpr_withdraw_consent : @string/gdpr_give_consent, default=@string/gdpr_give_consent}"
-                    android:textColor="@color/colorGdprPrimary" />
+                    android:id="@+id/consentCard"
+                    android:layout_margin="8dp"
+                    app:cardBackgroundColor="@color/colorGdprPrimary"
+                    app:layout_constraintTop_toTopOf="parent">
 
-                <TextView
-                    android:layout_width="0dp"
-                    android:layout_height="wrap_content"
-                    android:layout_marginLeft="8dp"
-                    style="@style/TextAppearance.AppCompat.Caption"
-                    app:layout_constraintTop_toTopOf="@+id/consent"
-                    app:layout_constraintBottom_toBottomOf="@+id/consent"
-                    app:layout_constraintLeft_toRightOf="@+id/consent"
-                    app:layout_constraintVertical_bias="0.5"
-                    app:layout_constraintRight_toRightOf="parent"
-                    android:layout_marginStart="8dp"
-                    android:layout_marginRight="8dp"
-                    android:layout_marginEnd="8dp"
-                    android:text="@string/gdpr_consent_not_yet_given"
-                    android:visibility="@{request.isConsented || request.isRequired ? View.GONE : View.VISIBLE}" />
+                    <android.support.constraint.ConstraintLayout
+                        android:layout_width="match_parent"
+                        android:padding="8dp"
+                        android:layout_height="match_parent"
+                        tools:context=".ConsentActivity"
+                        tools:showIn="@layout/activity_gdpr_main">
+
+                        <TextView
+                            android:id="@+id/consentLabel"
+                            style="@style/TextAppearance.AppCompat.Subhead"
+                            android:textStyle="bold"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_marginStart="8dp"
+                            android:layout_marginLeft="8dp"
+                            android:layout_marginEnd="8dp"
+                            android:layout_marginRight="8dp"
+                            android:text="@string/gdpr_consent"
+                            app:layout_constraintLeft_toLeftOf="parent" />
+
+                        <TextView
+                            android:id="@+id/required"
+                            style="@style/TextAppearance.AppCompat.Caption"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_marginStart="8dp"
+                            android:layout_marginLeft="8dp"
+                            android:text="@{request.isRequired ? @string/gdpr_caption_required : @string/gdpr_caption_not_required, default=@string/gdpr_caption_required}"
+                            android:visibility="@{request.isRequired ? View.VISIBLE : View.GONE}"
+                            app:layout_constraintLeft_toLeftOf="parent"
+                            app:layout_constraintTop_toBottomOf="@+id/consentLabel" />
+
+
+                        <android.support.v7.widget.SwitchCompat
+                            android:id="@+id/consent"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:checked="@{request.isConsented, default=false}"
+                            app:layout_constraintLeft_toLeftOf="@+id/required"
+                            app:layout_constraintTop_toBottomOf="@+id/required" />
+
+                        <TextView
+                            style="@style/TextAppearance.AppCompat.Caption"
+                            android:layout_width="0dp"
+                            android:layout_height="wrap_content"
+                            android:layout_marginStart="8dp"
+                            android:layout_marginLeft="8dp"
+                            android:layout_marginEnd="8dp"
+                            android:layout_marginRight="8dp"
+                            android:text="@string/gdpr_consent_not_yet_given"
+                            android:visibility="@{request.isConsented || request.isRequired ? View.GONE : View.VISIBLE}"
+                            app:layout_constraintBottom_toBottomOf="@+id/consent"
+                            app:layout_constraintLeft_toRightOf="@+id/consent"
+                            app:layout_constraintRight_toRightOf="parent"
+                            app:layout_constraintTop_toTopOf="@+id/consent"
+                            app:layout_constraintVertical_bias="0.5" />
+                    </android.support.constraint.ConstraintLayout>
+                </android.support.v7.widget.CardView>
 
                 <android.support.v7.widget.CardView
                     android:id="@+id/whyNeededCard"
-                    app:layout_constraintTop_toBottomOf="@+id/consent"
                     android:layout_width="match_parent"
-                    app:cardBackgroundColor="@color/colorGdprPrimary"
                     android:layout_height="wrap_content"
-                    android:layout_margin="8dp">
+                    android:layout_margin="8dp"
+                    app:cardBackgroundColor="@color/colorGdprPrimary"
+                    app:layout_constraintTop_toBottomOf="@+id/consentCard">
 
                     <LinearLayout
                         android:layout_width="match_parent"
@@ -134,26 +173,26 @@
                             android:layout_width="match_parent"
                             android:layout_height="wrap_content"
                             android:text="@string/gdpr_header_why"
-                            android:textStyle="bold"
-                            android:textAppearance="?attr/textAppearanceListItem" />
+                            
+                            android:textStyle="bold" />
 
                         <TextView
                             style="@style/TextAppearance.AppCompat.Body1"
                             android:layout_width="match_parent"
                             android:layout_height="wrap_content"
                             android:text="@{request.whyNeeded, default=`Why is this consent necessary`}"
-                            android:textAppearance="?attr/textAppearanceListItem" />
+                             />
                     </LinearLayout>
 
                 </android.support.v7.widget.CardView>
 
                 <android.support.v7.widget.CardView
-                    app:layout_constraintTop_toBottomOf="@+id/whyNeededCard"
+                    android:id="@+id/whatCard"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:id="@+id/whatCard"
+                    android:layout_margin="8dp"
                     app:cardBackgroundColor="@color/colorGdprPrimary"
-                    android:layout_margin="8dp">
+                    app:layout_constraintTop_toBottomOf="@+id/whyNeededCard">
 
                     <LinearLayout
                         android:layout_width="match_parent"
@@ -166,8 +205,8 @@
                             android:layout_width="match_parent"
                             android:layout_height="wrap_content"
                             android:text="@string/gdpr_header_what"
-                            android:textStyle="bold"
-                            android:textAppearance="?attr/textAppearanceListItem" />
+                            
+                            android:textStyle="bold" />
 
 
                         <TextView
@@ -182,11 +221,11 @@
 
                 <android.support.v7.widget.CardView
                     android:id="@+id/moreInformationCard"
-                    app:layout_constraintTop_toBottomOf="@+id/whatCard"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
+                    android:layout_margin="8dp"
                     app:cardBackgroundColor="@color/colorGdprPrimary"
-                    android:layout_margin="8dp">
+                    app:layout_constraintTop_toBottomOf="@+id/whatCard">
 
                     <LinearLayout
                         android:layout_width="match_parent"
@@ -199,8 +238,8 @@
                             android:layout_width="match_parent"
                             android:layout_height="wrap_content"
                             android:text="@string/gdpr_header_more_information"
-                            android:textStyle="bold"
-                            android:textAppearance="?attr/textAppearanceListItem" />
+                            
+                            android:textStyle="bold" />
 
                         <TextView
                             android:id="@+id/more_info"
@@ -211,10 +250,10 @@
 
                         <Button
                             android:id="@+id/moreInformationButton"
-                            android:text="@string/gdpr_visit_page"
-                            android:background="?android:attr/selectableItemBackground"
                             android:layout_width="match_parent"
-                            android:layout_height="wrap_content" />
+                            android:layout_height="wrap_content"
+                            android:background="?android:attr/selectableItemBackground"
+                            android:text="@string/gdpr_visit_page" />
 
                     </LinearLayout>
 
@@ -223,15 +262,15 @@
 
                 <android.support.design.widget.FloatingActionButton
                     android:id="@+id/toTop"
-                    app:layout_constraintTop_toBottomOf="@+id/moreInformationCard"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    app:layout_constraintLeft_toLeftOf="@+id/moreInformationCard"
-                    app:layout_constraintRight_toRightOf="@+id/moreInformationCard"
-                    app:layout_constraintHorizontal_bias="0.5"
                     android:layout_marginTop="8dp"
                     android:layout_marginBottom="16dp"
                     android:visibility="invisible"
+                    app:layout_constraintHorizontal_bias="0.5"
+                    app:layout_constraintLeft_toLeftOf="@+id/moreInformationCard"
+                    app:layout_constraintRight_toRightOf="@+id/moreInformationCard"
+                    app:layout_constraintTop_toBottomOf="@+id/moreInformationCard"
                     app:srcCompat="@drawable/ic_chevron_double_up_white_48dp" />
 
             </android.support.constraint.ConstraintLayout>
