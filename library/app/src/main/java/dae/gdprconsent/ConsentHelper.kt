@@ -3,6 +3,7 @@ package dae.gdprconsent
 import android.app.Activity
 import android.content.Context
 import android.content.Intent
+import android.util.Log
 
 /**
  * Helper to interact with user consent.
@@ -63,6 +64,7 @@ object ConsentHelper {
      */
     @JvmStatic
     fun showGdpr(activity: Activity, requestCode: Int, consentItems: ArrayList<ConsentRequest>) {
+        Log.v("CONSENT", "Opening consent dialog (ALL)")
         val intent = Intent(activity, ConsentActivity::class.java)
         intent.putParcelableArrayListExtra(Constants.CONSENT_REQUESTS, consentItems)
         intent.putExtra(Constants.KEY_MODE, Constants.MODE_ALWAYS_SHOW)
@@ -76,6 +78,7 @@ object ConsentHelper {
      */
     @JvmStatic
     fun showGdprIfRequest(activity: Activity, requestCode: Int, consentItems: ArrayList<ConsentRequest>) {
+        Log.v("CONSENT", "Opening consent dialog (REQUIRED)")
         val intent = Intent(activity, ConsentActivity::class.java)
         intent.putParcelableArrayListExtra(Constants.CONSENT_REQUESTS, consentItems)
         intent.putExtra(Constants.KEY_MODE, Constants.MODE_SHOW_IF_REQUIRED)
@@ -93,6 +96,7 @@ object ConsentHelper {
      */
     @JvmStatic
     fun showGdprOnlyNew(activity: Activity, requestCode: Int, consentItems: ArrayList<ConsentRequest>) {
+        Log.v("CONSENT", "Opening consent dialog (NEW)")
         val intent = Intent(activity, ConsentActivity::class.java)
         intent.putParcelableArrayListExtra(Constants.CONSENT_REQUESTS, consentItems)
         intent.putExtra(Constants.KEY_MODE, Constants.MODE_SHOW_NOT_SEEN)

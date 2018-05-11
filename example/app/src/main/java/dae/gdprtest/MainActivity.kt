@@ -1,17 +1,22 @@
 package dae.gdprtest
 
 import android.app.Activity
+import android.app.AlarmManager
+import android.app.PendingIntent
+import android.content.Context
 import android.content.Intent
 import android.os.Bundle
 import android.support.v7.app.AppCompatActivity
 import android.util.Log
 import dae.gdprconsent.ConsentHelper
 import dae.gdprconsent.ConsentRequest
+import dae.gdprconsent.Constants
 import kotlinx.android.synthetic.main.activity_main.*
 
 class MainActivity : AppCompatActivity() {
 
     val RC_CONSENT = 1
+    val RC_RESTART = 2
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -76,6 +81,18 @@ class MainActivity : AppCompatActivity() {
         if(requestCode == RC_CONSENT) {
             if(resultCode == Activity.RESULT_OK) {
                 // User passed through the consent system completely
+
+                // Did consent change?
+                val consentChanged = data?.extras?.getBoolean(Constants.KEY_CONSENT_CHANGED) ?: false
+                if(consentChanged) {
+                    // If consent was changed, restart the App. This lets the Application class initialize services such as Analytics
+                    val intent = Intent(this, MainActivity::class.java)
+                    val pending = PendingIntent.getActivity(this, RC_RESTART, intent, PendingIntent.FLAG_CANCEL_CURRENT)
+                    val alarmManager = this.getSystemService(Context.ALARM_SERVICE) as AlarmManager
+                    alarmManager.set(AlarmManager.RTC, System.currentTimeMillis() + 100, pending)
+                    finish()
+                    System.exit(0)
+                }
 
                 Log.v("CONSENT", "Consent for basic App functions: ${ConsentHelper.hasConsent("BASIC_APP")}")
                 Log.v("CONSENT", "Consent for statistics collection: ${ConsentHelper.hasConsent("FIREBASE_STATISTICS")}")

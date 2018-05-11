@@ -186,6 +186,17 @@ class ConsentActivity : AppCompatActivity() {
         val intent = Intent()
         intent.putParcelableArrayListExtra(Constants.CONSENT_REQUESTS, list)
         ConsentHelper.populate(list)
+
+        var isChanged = false
+        val visibleList = viewModel.consentRequests
+        for (item in visibleList) {
+            if (item.hasChanged()) {
+                isChanged = true
+                break
+            }
+        }
+
+        intent.putExtra(Constants.KEY_CONSENT_CHANGED, isChanged)
         setResult(Activity.RESULT_OK, intent)
         finish()
     }

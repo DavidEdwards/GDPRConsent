@@ -20,4 +20,6 @@ object Constants {
     internal const val MODE_SHOW_IF_REQUIRED = 1
     internal const val MODE_SHOW_NOT_SEEN = 2
     internal const val MODE_ALWAYS_SHOW = 3
+
+    const val KEY_CONSENT_CHANGED = "CONSENT_CHANGED"
 }

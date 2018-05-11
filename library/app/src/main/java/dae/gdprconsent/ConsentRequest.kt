@@ -42,6 +42,8 @@ data class ConsentRequest(
         var moreInformation: String = ""
 ) : Parcelable {
 
+    private var originalConsented = isConsented
+
     protected constructor(source: Parcel) : this(
         key = source.readString(),
         isConsented = source.readByte().toInt() != 0,
@@ -70,6 +72,10 @@ data class ConsentRequest(
 
     override fun describeContents(): Int {
         return 0
+    }
+
+    fun hasChanged() : Boolean {
+        return isConsented != originalConsented
     }
 
 
@@ -110,6 +116,8 @@ data class ConsentRequest(
             what = o.getString(Constants.PREF_KEY_DESCRIPTION)
             whyNeeded = o.getString(Constants.PREF_KEY_WHY_NEEDED)
             moreInformation = o.getString(Constants.PREF_KEY_MORE_INFORMATION)
+
+            originalConsented = isConsented
         } catch (e: Exception) {
         }
 
@@ -146,6 +154,7 @@ data class ConsentRequest(
         if (prefs.contains("gdpr.$key")) {
             fromJson(prefs.getString("gdpr.$key", "{}"))
         }
+        originalConsented = isConsented
 
         return this
     }
