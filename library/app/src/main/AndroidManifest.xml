@@ -3,11 +3,10 @@
     package="dae.gdprconsent">
 
     <application
-        android:supportsRtl="true"
-        android:theme="@style/AppTheme">
+        android:supportsRtl="true">
         <activity
             android:name=".ConsentActivity"
-            android:theme="@style/AppTheme.NoActionBar">
+            android:theme="@style/GDPR_AppTheme.NoActionBar">
         </activity>
     </application>
 
