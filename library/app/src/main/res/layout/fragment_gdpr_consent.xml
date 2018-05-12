@@ -92,6 +92,8 @@
                     android:layout_height="wrap_content"
                     android:id="@+id/consentCard"
                     android:layout_margin="8dp"
+                    android:clickable="true"
+                    android:focusable="true"
                     app:cardBackgroundColor="@color/colorGdprPrimary"
                     app:layout_constraintTop_toTopOf="parent">
 

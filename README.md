@@ -1,5 +1,9 @@
 # GDPR Consent
 
+This project does not guarantee in any way that your App is immune or compliant with GDPR regulations. Ensure that you READ the associated laws yourself thoroughly.
+
+This is a great resource to learn about it: https://gdpr-info.eu/
+
 ## Implement in your project
 
 ```

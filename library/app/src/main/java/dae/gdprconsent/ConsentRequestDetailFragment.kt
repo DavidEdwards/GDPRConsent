@@ -39,8 +39,15 @@ class ConsentRequestDetailFragment : Fragment() {
         binding.executePendingBindings()
 
         binding.consent.setOnClickListener {
-            request.isConsented = !request.isConsented
-            requestUpdated()
+            toggleConsent()
+        }
+
+        binding.consentCard.setOnClickListener {
+            toggleConsent()
+        }
+
+        binding.status.setOnClickListener {
+            toggleConsent()
         }
 
         binding.moreInformationButton.setOnClickListener {
@@ -73,6 +80,11 @@ class ConsentRequestDetailFragment : Fragment() {
         }
 
         return binding.root
+    }
+
+    fun toggleConsent() {
+        request.isConsented = !request.isConsented
+        requestUpdated()
     }
 
     override fun onResume() {
