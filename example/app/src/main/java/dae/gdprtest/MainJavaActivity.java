@@ -1,6 +1,9 @@
 package dae.gdprtest;
 
 import android.app.Activity;
+import android.app.AlarmManager;
+import android.app.PendingIntent;
+import android.content.Context;
 import android.content.Intent;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
@@ -9,9 +12,9 @@ import android.util.Log;
 
 import java.util.ArrayList;
 
-import dae.gdprconsent.Constants;
 import dae.gdprconsent.ConsentHelper;
 import dae.gdprconsent.ConsentRequest;
+import dae.gdprconsent.Constants;
 
 public class MainJavaActivity extends AppCompatActivity {
 
@@ -78,7 +81,9 @@ public class MainJavaActivity extends AppCompatActivity {
                 "We need this to learn how and when crashes are happening in our App."
         ));
 
-        ConsentHelper.showGdprOnlyNew(this, RC_CONSENT, list);
+        if(ConsentHelper.hasNewOrRequired(this, list)) {
+            ConsentHelper.showGdprOnlyNew(this, RC_CONSENT, list);
+        }
 
         findViewById(R.id.goToGdpr).setOnClickListener(view -> ConsentHelper.showGdpr(this, RC_CONSENT, list));
     }

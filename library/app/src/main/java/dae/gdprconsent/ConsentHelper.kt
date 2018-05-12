@@ -18,6 +18,20 @@ object ConsentHelper {
     val consentCache: HashMap<String, Boolean> = HashMap()
 
     /**
+     * This function can be used before starting the [ConsentActivity].
+     */
+    @JvmStatic
+    fun hasNewOrRequired(context: Context, list: List<ConsentRequest>) : Boolean {
+        for(request in list) {
+            request.load(context)
+            if((request.isRequired && !request.isConsented) || (!request.isSeen)) {
+                return true
+            }
+        }
+        return false
+    }
+
+    /**
      * Fill the cache with key and consent data.
      * This is for the [hasConsent] method.
      */

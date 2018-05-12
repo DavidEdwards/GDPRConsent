@@ -68,7 +68,9 @@ class MainActivity : AppCompatActivity() {
                 whyNeeded = "We need this to learn how and when crashes are happening in our App."
         ))
 
-        ConsentHelper.showGdprOnlyNew(this, RC_CONSENT, list)
+        if(ConsentHelper.hasNewOrRequired(this, list)) {
+            ConsentHelper.showGdprOnlyNew(this, RC_CONSENT, list)
+        }
 
         goToGdpr.setOnClickListener {
             ConsentHelper.showGdpr(this, RC_CONSENT, list)
