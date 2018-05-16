@@ -13,7 +13,7 @@ maven {
     url  "https://dl.bintray.com/davidedwards/dae"
 }
 
-implementation 'dae.gdprconsent:app:0.9.1@aar'
+implementation 'dae.gdprconsent:app:0.9.2@aar'
 ```
 
 These dependencies must be registered in your own app level gradle.build.
