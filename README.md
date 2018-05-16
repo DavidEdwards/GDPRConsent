@@ -4,6 +4,8 @@ This project does not guarantee in any way that your App is immune or compliant 
 
 This is a great resource to learn about it: https://gdpr-info.eu/
 
+![Example animation](https://github.com/DavidEdwards/GDPRConsent/blob/master/example.gif)
+
 ## Implement in your project
 
 ```
