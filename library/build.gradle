@@ -5,7 +5,9 @@ apply plugin: 'kotlin-kapt'
 
 apply plugin: 'com.jfrog.bintray'
 apply plugin: 'org.jetbrains.dokka-android'
-apply plugin: 'maven-publish'
+apply plugin: 'maven'
+
+group = 'com.github.DavidEdwards'
 
 android {
     compileSdkVersion 27
