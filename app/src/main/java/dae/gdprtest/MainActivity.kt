@@ -67,7 +67,7 @@ class MainActivity : AppCompatActivity() {
                 what = "Firebase stores your Instance ID and crash traces. Crash traces are deleted after 180 days.",
                 whyNeeded = "We need this to learn how and when crashes are happening in our App."
         ))
-
+        ConsentHelper.useTheme(R.style.App_GDPR_Theme)
         if(ConsentHelper.hasNewOrRequired(this, list)) {
             ConsentHelper.showGdprOnlyNew(this, RC_CONSENT, list)
         }

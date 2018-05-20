@@ -29,8 +29,13 @@ class ConsentActivity : AppCompatActivity() {
         viewModel = ViewModelProviders.of(this).get(ConsentViewModel::class.java)
 
         setContentView(R.layout.activity_gdpr_main)
-
-        setSupportActionBar(toolbar)
+        
+        try {
+            setSupportActionBar(toolbar)
+        }
+        catch (invalidTheme: IllegalStateException){
+            throw IllegalStateException("Invalid theme! Theme must be a NoActionBar theme")
+        }
         adapter = ConsentPagerAdapter(supportFragmentManager)
 
         supportActionBar?.setDisplayHomeAsUpEnabled(true)
