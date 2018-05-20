@@ -22,7 +22,7 @@
             android:id="@+id/status"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:background="@color/colorGdprPrimary"
+            android:background="@color/white"
             android:contentDescription="@{request.consented ? @string/gdpr_image_alt_is_consented : @string/gdpr_image_alt_is_not_consented, default=@string/gdpr_image_alt_is_consented}"
             android:elevation="4dp"
             android:padding="8dp"
@@ -35,7 +35,7 @@
             style="@style/TextAppearance.AppCompat.Headline"
             android:layout_width="0dp"
             android:layout_height="0dp"
-            android:background="@color/colorGdprPrimary"
+            android:background="@color/white"
             android:elevation="4dp"
             android:gravity="center_vertical"
             android:paddingStart="8dp"
@@ -54,7 +54,7 @@
             style="@style/TextAppearance.AppCompat.Subhead"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
-            android:background="@color/colorGdprPrimary"
+            android:background="@color/white"
             android:elevation="4dp"
             android:padding="8dp"
             android:text="@{request.category, default=`Category`}"
@@ -94,7 +94,7 @@
                     android:layout_margin="8dp"
                     android:clickable="true"
                     android:focusable="true"
-                    app:cardBackgroundColor="@color/colorGdprPrimary"
+                    app:cardBackgroundColor="@color/white"
                     app:layout_constraintTop_toTopOf="parent">
 
                     <android.support.constraint.ConstraintLayout
@@ -161,7 +161,7 @@
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:layout_margin="8dp"
-                    app:cardBackgroundColor="@color/colorGdprPrimary"
+                    app:cardBackgroundColor="@color/white"
                     app:layout_constraintTop_toBottomOf="@+id/consentCard">
 
                     <LinearLayout
@@ -193,7 +193,7 @@
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:layout_margin="8dp"
-                    app:cardBackgroundColor="@color/colorGdprPrimary"
+                    app:cardBackgroundColor="@color/white"
                     app:layout_constraintTop_toBottomOf="@+id/whyNeededCard">
 
                     <LinearLayout
@@ -207,7 +207,6 @@
                             android:layout_width="match_parent"
                             android:layout_height="wrap_content"
                             android:text="@string/gdpr_header_what"
-                            
                             android:textStyle="bold" />
 
 
@@ -226,7 +225,7 @@
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:layout_margin="8dp"
-                    app:cardBackgroundColor="@color/colorGdprPrimary"
+                    app:cardBackgroundColor="@color/white"
                     app:layout_constraintTop_toBottomOf="@+id/whatCard">
 
                     <LinearLayout
