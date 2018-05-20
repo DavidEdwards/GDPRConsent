@@ -9,11 +9,9 @@ This is a great resource to learn about it: https://gdpr-info.eu/
 ## Implement in your project
 
 ```
-maven {
-    url  "https://dl.bintray.com/davidedwards/dae"
-}
+maven { url 'https://jitpack.io' }
 
-implementation 'dae.gdprconsent:app:0.9.2@aar'
+implementation 'com.github.DavidEdwards:GDPRConsent:0.9.2'
 ```
 
 These dependencies must be registered in your own app level gradle.build.
