@@ -1,3 +1,5 @@
+[![CircleCI](https://circleci.com/gh/DavidEdwards/GDPRConsent/tree/master.svg?style=svg)](https://circleci.com/gh/DavidEdwards/GDPRConsent/tree/master)
+
 # GDPR Consent
 
 This project does not guarantee in any way that your App is immune or compliant with GDPR regulations. Ensure that you READ the associated laws yourself thoroughly.
