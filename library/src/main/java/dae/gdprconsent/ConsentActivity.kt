@@ -22,6 +22,9 @@ class ConsentActivity : AppCompatActivity() {
     private lateinit var viewModel: ConsentViewModel
 
     override fun onCreate(savedInstanceState: Bundle?) {
+        val theme = intent.getIntExtra(Constants.KEY_THEME, R.style.GDPR_AppTheme)
+        if (theme != 0)
+            setTheme(theme)
         super.onCreate(savedInstanceState)
         viewModel = ViewModelProviders.of(this).get(ConsentViewModel::class.java)
 
@@ -55,9 +58,9 @@ class ConsentActivity : AppCompatActivity() {
             }
         })
 
-        val mode = intent.getIntExtra(Constants.KEY_MODE, Constants.MODE_SHOW_NOT_SEEN)
-        var quickMode = mode == Constants.MODE_SHOW_IF_REQUIRED || mode == Constants.MODE_SHOW_NOT_SEEN
-        val showNotSeen = mode == Constants.MODE_SHOW_NOT_SEEN
+        val mode = intent.getIntExtra(Constants.KEY_MODE, Constants.SHOW_MODES.MODE_SHOW_NOT_SEEN.modeID)
+        var quickMode = mode == Constants.SHOW_MODES.MODE_SHOW_IF_REQUIRED.modeID || mode == Constants.SHOW_MODES.MODE_SHOW_NOT_SEEN.modeID
+        val showNotSeen = mode == Constants.SHOW_MODES.MODE_SHOW_NOT_SEEN.modeID
 
         val dataset: ArrayList<ConsentRequest> = intent.extras.getParcelableArrayList(Constants.CONSENT_REQUESTS)
         for (item in dataset) {

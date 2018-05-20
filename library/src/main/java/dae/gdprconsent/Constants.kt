@@ -16,6 +16,7 @@ object Constants {
     internal const val CONSENT_REQUESTS = "INTENT_KEY_CONSENT_REQUESTS"
 
     internal const val KEY_MODE = "KEY_MODE"
+    internal const val KEY_THEME = "KEY_THEME"
 
     enum class SHOW_MODES(val modeID: Int) {
         MODE_SHOW_IF_REQUIRED(1),
