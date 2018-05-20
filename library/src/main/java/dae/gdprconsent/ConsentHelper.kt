@@ -67,7 +67,19 @@ object ConsentHelper {
     fun hasConsent(key: String): Boolean {
         return consentCache[key] ?: false
     }
-
+    
+    /**
+     * Show the GDPR dialog.
+     *
+     * This will show depending on the provided mode parameter, showing all consent items.
+     */
+    private fun showGdpr(activity: Activity, requestCode: Int, consentItems: ArrayList<ConsentRequest>, mode: Constants.SHOW_MODES){
+        val intent = Intent(activity, ConsentActivity::class.java)
+        intent.putParcelableArrayListExtra(Constants.CONSENT_REQUESTS, consentItems)
+        intent.putExtra(Constants.KEY_MODE, mode)
+        activity.startActivityForResult(intent, requestCode)
+    }
+    
     /**
      * Show the GDPR dialog.
      *
@@ -79,10 +91,7 @@ object ConsentHelper {
     @JvmStatic
     fun showGdpr(activity: Activity, requestCode: Int, consentItems: ArrayList<ConsentRequest>) {
         Log.v("CONSENT", "Opening consent dialog (ALL)")
-        val intent = Intent(activity, ConsentActivity::class.java)
-        intent.putParcelableArrayListExtra(Constants.CONSENT_REQUESTS, consentItems)
-        intent.putExtra(Constants.KEY_MODE, Constants.MODE_ALWAYS_SHOW)
-        activity.startActivityForResult(intent, requestCode)
+        showGdpr(activity, requestCode, consentItems, Constants.SHOW_MODES.MODE_ALWAYS_SHOW)
     }
 
     /**
@@ -93,10 +102,7 @@ object ConsentHelper {
     @JvmStatic
     fun showGdprIfRequest(activity: Activity, requestCode: Int, consentItems: ArrayList<ConsentRequest>) {
         Log.v("CONSENT", "Opening consent dialog (REQUIRED)")
-        val intent = Intent(activity, ConsentActivity::class.java)
-        intent.putParcelableArrayListExtra(Constants.CONSENT_REQUESTS, consentItems)
-        intent.putExtra(Constants.KEY_MODE, Constants.MODE_SHOW_IF_REQUIRED)
-        activity.startActivityForResult(intent, requestCode)
+        showGdpr(activity, requestCode, consentItems, Constants.SHOW_MODES.MODE_SHOW_IF_REQUIRED)
     }
 
     /**
@@ -111,9 +117,6 @@ object ConsentHelper {
     @JvmStatic
     fun showGdprOnlyNew(activity: Activity, requestCode: Int, consentItems: ArrayList<ConsentRequest>) {
         Log.v("CONSENT", "Opening consent dialog (NEW)")
-        val intent = Intent(activity, ConsentActivity::class.java)
-        intent.putParcelableArrayListExtra(Constants.CONSENT_REQUESTS, consentItems)
-        intent.putExtra(Constants.KEY_MODE, Constants.MODE_SHOW_NOT_SEEN)
-        activity.startActivityForResult(intent, requestCode)
+        showGdpr(activity, requestCode, consentItems, Constants.SHOW_MODES.MODE_SHOW_NOT_SEEN)
     }
 }

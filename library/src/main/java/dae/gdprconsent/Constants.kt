@@ -17,9 +17,11 @@ object Constants {
 
     internal const val KEY_MODE = "KEY_MODE"
 
-    internal const val MODE_SHOW_IF_REQUIRED = 1
-    internal const val MODE_SHOW_NOT_SEEN = 2
-    internal const val MODE_ALWAYS_SHOW = 3
+    enum class SHOW_MODES(val modeID: Int) {
+        MODE_SHOW_IF_REQUIRED(1),
+        MODE_SHOW_NOT_SEEN(2),
+        MODE_ALWAYS_SHOW(3)
+    }
 
     const val KEY_CONSENT_CHANGED = "CONSENT_CHANGED"
 }
