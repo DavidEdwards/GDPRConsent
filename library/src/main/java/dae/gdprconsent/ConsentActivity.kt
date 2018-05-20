@@ -22,7 +22,7 @@ class ConsentActivity : AppCompatActivity() {
     private lateinit var viewModel: ConsentViewModel
 
     override fun onCreate(savedInstanceState: Bundle?) {
-        val theme = intent.getIntExtra(Constants.KEY_THEME, R.style.GDPR_AppTheme)
+        val theme = intent.getIntExtra(Constants.KEY_THEME, R.style.GDPR_AppTheme_NoActionBar)
         if (theme != 0)
             setTheme(theme)
         super.onCreate(savedInstanceState)

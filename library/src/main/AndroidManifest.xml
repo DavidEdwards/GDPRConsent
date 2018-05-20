@@ -5,8 +5,7 @@
     <application
         android:supportsRtl="true">
         <activity
-            android:name=".ConsentActivity"
-            android:theme="@style/GDPR_AppTheme.NoActionBar">
+            android:name=".ConsentActivity">
         </activity>
     </application>
 
