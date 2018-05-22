@@ -30,6 +30,9 @@ class ConsentActivity : AppCompatActivity() {
         setSupportActionBar(toolbar)
         adapter = ConsentPagerAdapter(supportFragmentManager)
 
+        toolbar.title = getString(R.string.gdpr_consent)
+        toolbar.subtitle = getString(R.string.app_name)
+
         supportActionBar?.setDisplayHomeAsUpEnabled(true)
         supportActionBar?.setHomeButtonEnabled(true)
 
