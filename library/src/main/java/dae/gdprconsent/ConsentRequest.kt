@@ -1,5 +1,6 @@
 package dae.gdprconsent
 
+import android.annotation.SuppressLint
 import android.content.Context
 import android.content.SharedPreferences
 import android.os.Parcel
@@ -128,11 +129,16 @@ data class ConsentRequest(
      * This is how the state of [isConsented] and [isSeen] is saved.
      * It also guarantees immutability for a given consents language.
      */
+    @SuppressLint("ApplySharedPref")
     internal fun save(context: Context): ConsentRequest {
         val prefs = context.getSharedPreferences(Constants.PREF_GDPR, Context.MODE_PRIVATE)
         val editor = prefs.edit()
         editor.putString("gdpr.$key", asJson())
-        editor.apply()
+
+        Thread {
+            // Changed to use commit, as this must be done immediately.
+            editor.commit()
+        }.start()
 
         return this
     }

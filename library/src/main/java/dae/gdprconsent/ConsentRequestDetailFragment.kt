@@ -20,20 +20,30 @@ class ConsentRequestDetailFragment : Fragment() {
     lateinit var request: ConsentRequest
     lateinit var binding: FragmentGdprConsentBinding
     private lateinit var viewModel: ConsentViewModel
+    private var presetSeen = false
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
+        userVisibleHint = false
         viewModel = ViewModelProviders.of(this).get(ConsentViewModel::class.java)
-
         request = arguments!!.getParcelable(ARG_CONSENT_REQUEST)
+    }
+
+    override fun setUserVisibleHint(isVisibleToUser: Boolean) {
+        super.setUserVisibleHint(isVisibleToUser)
+
+        if(isVisibleToUser) {
+            presetSeen = isVisibleToUser
+
+            if(isResumed) {
+                toggleSeen()
+            }
+        }
     }
 
     override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?,
                               savedInstanceState: Bundle?): View? {
         binding = DataBindingUtil.inflate(inflater, R.layout.fragment_gdpr_consent, container, false)
-
-        request.isSeen = true
-        requestUpdated()
 
         binding.request = request
         binding.executePendingBindings()
@@ -79,10 +89,19 @@ class ConsentRequestDetailFragment : Fragment() {
             binding.contentScroll.smoothScrollTo(0, 0)
         }
 
+        if(presetSeen) {
+            toggleSeen()
+        }
+
         return binding.root
     }
 
-    fun toggleConsent() {
+    private fun toggleSeen() {
+        request.isSeen = !request.isSeen
+        requestUpdated()
+    }
+
+    private fun toggleConsent() {
         request.isConsented = !request.isConsented
         requestUpdated()
     }
