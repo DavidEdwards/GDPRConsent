@@ -1,5 +1,10 @@
 # Changelog
 
+# 0.9.5
+
+* Toggling seen is not a necessary function. It must only set a request as seen.
+* Use recommended method for inflating a DataBinding.
+
 # 0.9.4
 
 * Preferences will commit immediately to avoid them being overwritten.

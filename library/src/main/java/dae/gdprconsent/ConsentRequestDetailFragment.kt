@@ -3,7 +3,6 @@ package dae.gdprconsent
 import android.arch.lifecycle.ViewModelProviders
 import android.content.ActivityNotFoundException
 import android.content.Intent
-import android.databinding.DataBindingUtil
 import android.net.Uri
 import android.os.Bundle
 import android.support.v4.app.Fragment
@@ -32,11 +31,13 @@ class ConsentRequestDetailFragment : Fragment() {
     override fun setUserVisibleHint(isVisibleToUser: Boolean) {
         super.setUserVisibleHint(isVisibleToUser)
 
+
+
         if(isVisibleToUser) {
             presetSeen = isVisibleToUser
 
             if(isResumed) {
-                toggleSeen()
+                setIsSeen()
             }
         }
     }
@@ -90,14 +91,14 @@ class ConsentRequestDetailFragment : Fragment() {
         }
 
         if(presetSeen) {
-            toggleSeen()
+            setIsSeen()
         }
 
         return binding.root
     }
 
-    private fun toggleSeen() {
-        request.isSeen = !request.isSeen
+    private fun setIsSeen() {
+        request.isSeen = true
         requestUpdated()
     }
 
