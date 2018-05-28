@@ -1,5 +1,16 @@
 # Changelog
 
+# 0.9.4
+
+* Preferences will commit immediately to avoid them being overwritten.
+* Seen requests are now set only once the user has seen them, and not when the App loads the fragment.
+
+# 0.9.3
+
+Due to user feedback, the following changes were made.
+
+* Add a subtitle to the consent system. This will contain the title of the main App. This lets users know precisely what App is asking for permission.
+
 # 0.9.2
 
 Due to user feedback, the following changes were made.
