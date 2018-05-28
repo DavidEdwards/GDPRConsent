@@ -43,7 +43,7 @@ class ConsentRequestDetailFragment : Fragment() {
 
     override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?,
                               savedInstanceState: Bundle?): View? {
-        binding = DataBindingUtil.inflate(inflater, R.layout.fragment_gdpr_consent, container, false)
+        binding = FragmentGdprConsentBinding.inflate(inflater, container, false)
 
         binding.request = request
         binding.executePendingBindings()
