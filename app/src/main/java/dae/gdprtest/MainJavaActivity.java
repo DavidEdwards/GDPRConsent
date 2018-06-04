@@ -37,9 +37,9 @@ public class MainJavaActivity extends AppCompatActivity {
                 "2018-05-09",
                 "How old are you?",
                 "Age",
-                "https://gdpr-info.eu/art-8-gdpr/",
                 "You must be at least 16 years of age to use this App.",
-                "Due to European regulations, you must be at least 16 years of age to use this App."
+                "Due to European regulations, you must be at least 16 years of age to use this App.",
+                "https://gdpr-info.eu/art-8-gdpr/"
         ));
 
         list.add(new ConsentRequest(
@@ -50,9 +50,9 @@ public class MainJavaActivity extends AppCompatActivity {
                 "2018-05-09",
                 "Basic functions",
                 "Application",
-                "http://example.com/gdpr",
                 "We store your E-mail address, password, billing address, ..., on our servers.",
-                "We need this information to perform the basic functionality of this App. Fill this section with more information about how each item is specific required."
+                "We need this information to perform the basic functionality of this App. Fill this section with more information about how each item is specific required.",
+                "http://example.com/gdpr"
         ));
 
         list.add(new ConsentRequest(
@@ -63,9 +63,9 @@ public class MainJavaActivity extends AppCompatActivity {
                 "2018-05-08",
                 "Statistics",
                 "Analytics",
-                "https://firebase.google.com/support/privacy/",
                 "Firebase stores your Mobile Ad ID, Android ID, Instance ID and Analytics App Instance IDs. ID specific data is deleted after 60 days.",
-                "We send this information to Firebase in order that we can better understand our users, enabling us to create better Apps."
+                "We send this information to Firebase in order that we can better understand our users, enabling us to create better Apps.",
+                "https://firebase.google.com/support/privacy/"
         ));
 
         list.add(new ConsentRequest(
@@ -76,9 +76,9 @@ public class MainJavaActivity extends AppCompatActivity {
                 "2018-05-07",
                 "Crash reporting",
                 "Analytics",
-                "https://firebase.google.com/support/privacy",
                 "Firebase stores your Instance ID and crash traces. Crash traces are deleted after 180 days.",
-                "We need this to learn how and when crashes are happening in our App."
+                "We need this to learn how and when crashes are happening in our App.",
+                "https://firebase.google.com/support/privacy"
         ));
 
         if(ConsentHelper.hasNewOrRequired(this, list)) {
