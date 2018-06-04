@@ -1,5 +1,9 @@
 # Changelog
 
+# 1.0
+
+* Parameters were wrong for the Java example.
+
 # 0.9.5
 
 * Toggling seen is not a necessary function. It must only set a request as seen.

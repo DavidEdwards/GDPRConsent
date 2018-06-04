@@ -13,7 +13,7 @@ This is a great resource to learn about it: https://gdpr-info.eu/
 ```
 maven { url 'https://jitpack.io' }
 
-implementation 'com.github.DavidEdwards:GDPRConsent:0.9.5'
+implementation 'com.github.DavidEdwards:GDPRConsent:1.0'
 ```
 
 These dependencies must be registered in your own app level gradle.build.
