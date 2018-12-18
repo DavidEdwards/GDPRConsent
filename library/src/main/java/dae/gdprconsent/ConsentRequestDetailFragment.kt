@@ -25,13 +25,11 @@ class ConsentRequestDetailFragment : androidx.fragment.app.Fragment() {
         super.onCreate(savedInstanceState)
         userVisibleHint = false
         viewModel = ViewModelProviders.of(this).get(ConsentViewModel::class.java)
-        request = arguments!!.getParcelable(ARG_CONSENT_REQUEST)
+        request = arguments!!.getParcelable(ARG_CONSENT_REQUEST)!!
     }
 
     override fun setUserVisibleHint(isVisibleToUser: Boolean) {
         super.setUserVisibleHint(isVisibleToUser)
-
-
 
         if(isVisibleToUser) {
             presetSeen = isVisibleToUser
@@ -112,7 +110,11 @@ class ConsentRequestDetailFragment : androidx.fragment.app.Fragment() {
 
         binding.contentScroll.post {
             with(binding) {
-                this.toTop.visibility = if (this.contentScroll.canScrollVertically(1) || this.contentScroll.canScrollVertically(-1)) View.VISIBLE else View.INVISIBLE
+                if (this.contentScroll.canScrollVertically(1) || this.contentScroll.canScrollVertically(-1)) {
+                    this.toTop.show()
+                } else {
+                    this.toTop.hide()
+                }
             }
         }
     }

@@ -46,16 +46,16 @@ data class ConsentRequest(
     private var originalConsented = isConsented
 
     protected constructor(source: Parcel) : this(
-        key = source.readString(),
+        key = source.readString() ?: "",
         isConsented = source.readByte().toInt() != 0,
         isSeen = source.readByte().toInt() != 0,
         isRequired = source.readByte().toInt() != 0,
-        added = source.readString(),
-        title = source.readString(),
-        category = source.readString(),
-        what = source.readString(),
-        whyNeeded = source.readString(),
-        moreInformation = source.readString()
+        added = source.readString() ?: "",
+        title = source.readString() ?: "",
+        category = source.readString() ?: "",
+        what = source.readString() ?: "",
+        whyNeeded = source.readString() ?: "",
+        moreInformation = source.readString() ?: ""
     )
 
     override fun writeToParcel(dest: Parcel, flags: Int) {
@@ -158,7 +158,7 @@ data class ConsentRequest(
      */
     internal fun load(prefs: SharedPreferences): ConsentRequest {
         if (prefs.contains("gdpr.$key")) {
-            fromJson(prefs.getString("gdpr.$key", "{}"))
+            fromJson(prefs.getString("gdpr.$key", null)?:"{}")
         }
         originalConsented = isConsented
 
