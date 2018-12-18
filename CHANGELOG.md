@@ -1,5 +1,9 @@
 # Changelog
 
+# 1.0.1
+
+* Update to latest versions of dependencies.
+
 # 1.0
 
 * Parameters were wrong for the Java example.

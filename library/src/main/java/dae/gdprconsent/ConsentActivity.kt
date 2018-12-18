@@ -1,16 +1,16 @@
 package dae.gdprconsent
 
 import android.app.Activity
-import android.arch.lifecycle.ViewModelProviders
+import androidx.lifecycle.ViewModelProviders
 import android.content.Context
 import android.content.Intent
 import android.os.Bundle
-import android.support.design.widget.Snackbar
-import android.support.v4.app.Fragment
-import android.support.v4.app.FragmentManager
-import android.support.v4.app.FragmentPagerAdapter
-import android.support.v4.view.ViewPager
-import android.support.v7.app.AppCompatActivity
+import com.google.android.material.snackbar.Snackbar
+import androidx.fragment.app.Fragment
+import androidx.fragment.app.FragmentManager
+import androidx.fragment.app.FragmentPagerAdapter
+import androidx.viewpager.widget.ViewPager
+import androidx.appcompat.app.AppCompatActivity
 import android.util.Log
 import android.view.MenuItem
 import android.view.View
@@ -47,7 +47,7 @@ class ConsentActivity : AppCompatActivity() {
             next()
         }
 
-        container.addOnPageChangeListener(object : ViewPager.OnPageChangeListener {
+        container.addOnPageChangeListener(object : androidx.viewpager.widget.ViewPager.OnPageChangeListener {
             override fun onPageScrollStateChanged(state: Int) {
             }
 
@@ -215,24 +215,24 @@ class ConsentActivity : AppCompatActivity() {
         return super.onOptionsItemSelected(item)
     }
 
-    inner class ConsentPagerAdapter(fm: FragmentManager) : FragmentPagerAdapter(fm) {
+    inner class ConsentPagerAdapter(fm: androidx.fragment.app.FragmentManager) : androidx.fragment.app.FragmentPagerAdapter(fm) {
 
         private var firstRun = true
-        private lateinit var mCurrentFragment: Fragment
+        private lateinit var mCurrentFragment: androidx.fragment.app.Fragment
 
-        val currentFragment: Fragment
+        val currentFragment: androidx.fragment.app.Fragment
             get() = mCurrentFragment
 
         override fun setPrimaryItem(container: ViewGroup, position: Int, obj: Any) {
             if (firstRun || mCurrentFragment != obj) {
                 firstRun = false
-                mCurrentFragment = obj as Fragment
+                mCurrentFragment = obj as androidx.fragment.app.Fragment
             }
 
             super.setPrimaryItem(container, position, obj)
         }
 
-        override fun getItem(position: Int): Fragment {
+        override fun getItem(position: Int): androidx.fragment.app.Fragment {
             return ConsentRequestDetailFragment.newInstance(viewModel.consentRequests[position])
         }
 

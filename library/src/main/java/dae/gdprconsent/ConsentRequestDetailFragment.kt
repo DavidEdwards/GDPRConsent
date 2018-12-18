@@ -1,11 +1,11 @@
 package dae.gdprconsent
 
-import android.arch.lifecycle.ViewModelProviders
+import androidx.lifecycle.ViewModelProviders
 import android.content.ActivityNotFoundException
 import android.content.Intent
 import android.net.Uri
 import android.os.Bundle
-import android.support.v4.app.Fragment
+import androidx.fragment.app.Fragment
 import android.text.TextUtils
 import android.view.LayoutInflater
 import android.view.View
@@ -14,7 +14,7 @@ import dae.gdprconsent.databinding.FragmentGdprConsentBinding
 import java.net.MalformedURLException
 import java.net.URL
 
-class ConsentRequestDetailFragment : Fragment() {
+class ConsentRequestDetailFragment : androidx.fragment.app.Fragment() {
 
     lateinit var request: ConsentRequest
     lateinit var binding: FragmentGdprConsentBinding

@@ -12,7 +12,7 @@
         <import type="android.view.View" />
     </data>
 
-    <android.support.constraint.ConstraintLayout
+    <androidx.constraintlayout.widget.ConstraintLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         tools:context=".ConsentActivity"
@@ -69,7 +69,7 @@
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintTop_toBottomOf="@+id/category">
 
-            <android.support.constraint.ConstraintLayout
+            <androidx.constraintlayout.widget.ConstraintLayout
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:orientation="vertical"
@@ -87,7 +87,7 @@
                 <!--android:text="@{request.isConsented ? @string/gdpr_withdraw_consent : @string/gdpr_give_consent, default=@string/gdpr_give_consent}"-->
                 <!--android:textColor="@color/colorGdprPrimary" />-->
 
-                <android.support.v7.widget.CardView
+                <androidx.cardview.widget.CardView
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:id="@+id/consentCard"
@@ -97,7 +97,7 @@
                     app:cardBackgroundColor="@color/colorGdprPrimary"
                     app:layout_constraintTop_toTopOf="parent">
 
-                    <android.support.constraint.ConstraintLayout
+                    <androidx.constraintlayout.widget.ConstraintLayout
                         android:layout_width="match_parent"
                         android:padding="8dp"
                         android:layout_height="match_parent"
@@ -130,7 +130,7 @@
                             app:layout_constraintTop_toBottomOf="@+id/consentLabel" />
 
 
-                        <android.support.v7.widget.SwitchCompat
+                        <androidx.appcompat.widget.SwitchCompat
                             android:id="@+id/consent"
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
@@ -153,10 +153,10 @@
                             app:layout_constraintRight_toRightOf="parent"
                             app:layout_constraintTop_toTopOf="@+id/consent"
                             app:layout_constraintVertical_bias="0.5" />
-                    </android.support.constraint.ConstraintLayout>
-                </android.support.v7.widget.CardView>
+                    </androidx.constraintlayout.widget.ConstraintLayout>
+                </androidx.cardview.widget.CardView>
 
-                <android.support.v7.widget.CardView
+                <androidx.cardview.widget.CardView
                     android:id="@+id/whyNeededCard"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
@@ -186,9 +186,9 @@
                              />
                     </LinearLayout>
 
-                </android.support.v7.widget.CardView>
+                </androidx.cardview.widget.CardView>
 
-                <android.support.v7.widget.CardView
+                <androidx.cardview.widget.CardView
                     android:id="@+id/whatCard"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
@@ -219,9 +219,9 @@
                             android:text="@{request.what, default=`What does consenting entail`}" />
                     </LinearLayout>
 
-                </android.support.v7.widget.CardView>
+                </androidx.cardview.widget.CardView>
 
-                <android.support.v7.widget.CardView
+                <androidx.cardview.widget.CardView
                     android:id="@+id/moreInformationCard"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
@@ -259,10 +259,10 @@
 
                     </LinearLayout>
 
-                </android.support.v7.widget.CardView>
+                </androidx.cardview.widget.CardView>
 
 
-                <android.support.design.widget.FloatingActionButton
+                <com.google.android.material.floatingactionbutton.FloatingActionButton
                     android:id="@+id/toTop"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
@@ -275,7 +275,7 @@
                     app:layout_constraintTop_toBottomOf="@+id/moreInformationCard"
                     app:srcCompat="@drawable/ic_chevron_double_up_white_48dp" />
 
-            </android.support.constraint.ConstraintLayout>
+            </androidx.constraintlayout.widget.ConstraintLayout>
         </ScrollView>
 
 
@@ -290,5 +290,5 @@
         <!--app:layout_constraintBottom_toBottomOf="parent"-->
         <!--app:layout_constraintLeft_toLeftOf="parent"-->
         <!--app:layout_constraintRight_toRightOf="parent" />-->
-    </android.support.constraint.ConstraintLayout>
+    </androidx.constraintlayout.widget.ConstraintLayout>
 </layout>

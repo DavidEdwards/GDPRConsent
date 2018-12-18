@@ -1,7 +1,7 @@
 package dae.gdprconsent
 
 import android.app.Application
-import android.arch.lifecycle.AndroidViewModel
+import androidx.lifecycle.AndroidViewModel
 import java.util.*
 
 class ConsentViewModel(application: Application) : AndroidViewModel(application) {
