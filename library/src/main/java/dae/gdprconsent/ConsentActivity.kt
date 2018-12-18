@@ -1,20 +1,15 @@
 package dae.gdprconsent
 
 import android.app.Activity
-import androidx.lifecycle.ViewModelProviders
 import android.content.Context
 import android.content.Intent
 import android.os.Bundle
-import com.google.android.material.snackbar.Snackbar
-import androidx.fragment.app.Fragment
-import androidx.fragment.app.FragmentManager
-import androidx.fragment.app.FragmentPagerAdapter
-import androidx.viewpager.widget.ViewPager
-import androidx.appcompat.app.AppCompatActivity
-import android.util.Log
 import android.view.MenuItem
 import android.view.View
 import android.view.ViewGroup
+import androidx.appcompat.app.AppCompatActivity
+import androidx.lifecycle.ViewModelProviders
+import com.google.android.material.snackbar.Snackbar
 import kotlinx.android.synthetic.main.activity_gdpr_main.*
 
 class ConsentActivity : AppCompatActivity() {
@@ -39,11 +34,11 @@ class ConsentActivity : AppCompatActivity() {
 
         container.adapter = adapter
 
-        previous.setOnClickListener { _ ->
+        previous.setOnClickListener {
             previous()
         }
 
-        next.setOnClickListener { _ ->
+        next.setOnClickListener {
             next()
         }
 
@@ -63,7 +58,7 @@ class ConsentActivity : AppCompatActivity() {
         var quickMode = mode == Constants.MODE_SHOW_IF_REQUIRED || mode == Constants.MODE_SHOW_NOT_SEEN
         val showNotSeen = mode == Constants.MODE_SHOW_NOT_SEEN
 
-        val dataset: ArrayList<ConsentRequest> = intent.extras.getParcelableArrayList(Constants.CONSENT_REQUESTS)
+        val dataset: java.util.ArrayList<ConsentRequest> = intent?.extras?.getParcelableArrayList(Constants.CONSENT_REQUESTS) ?: arrayListOf()
         for (item in dataset) {
             item.load(this)
 
@@ -161,15 +156,15 @@ class ConsentActivity : AppCompatActivity() {
     private fun refreshFABs() {
         when {
             container.currentItem == viewModel.consentRequests.size - 1 -> {
-                previous.visibility = if(viewModel.consentRequests.size > 1) View.VISIBLE else View.INVISIBLE
+                if(viewModel.consentRequests.size > 1) previous.show() else previous.hide()
                 next.setImageResource(R.drawable.ic_check_all_white_48dp)
             }
             container.currentItem == 0 -> {
-                previous.visibility = View.INVISIBLE
+                previous.hide()
                 next.setImageResource(R.drawable.ic_chevron_right_white_48dp)
             }
             else -> {
-                previous.visibility = View.VISIBLE
+                previous.show()
                 next.setImageResource(R.drawable.ic_chevron_right_white_48dp)
             }
         }
